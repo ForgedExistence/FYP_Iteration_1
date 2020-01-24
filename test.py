@@ -9,6 +9,29 @@ AU = (149.6e6 * 1000)     # 149.6 million km, in meters.
 SCALE = 250 / AU
 
 
+Sun = 0
+Mercury = (57.9e9)
+Venus = (108.2e9)
+Earth = (149.6e9)
+Mars = (227.9e9)
+
+AU = 1.496e11
+
+scale = 250/AU
+
+v_mer = 47.4
+v_ven = 35
+v_e = 29
+v_mar = 24.1
+
+
+m_sun = 1.988500e+30
+m_mercury = 0.330e+24
+m_venus = 4.87e+24
+m_earth = 5.97e+24
+m_mars = 0.642e+24
+
+
 class Body(Turtle):
     """Subclass of Turtle representing a gravitationally-acting body.
 
@@ -84,6 +107,7 @@ def loop(bodies):
     step = 1
     while True:
         update_info(step, bodies)
+
         step += 1
 
         force = {}
@@ -141,3 +165,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+# this test file doesn't work because there are too many bodies i think
