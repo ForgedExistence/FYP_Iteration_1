@@ -38,7 +38,7 @@ class Body(Turtle):
     Extra attributes:
     mass : mass in kg
     vx, vy: x, y velocities in m/s
-    px, py: x, y positions in m
+    px, py: x, y positions in m#
     """
 
     name = 'Body'
@@ -98,7 +98,7 @@ def loop(bodies):
     Never returns; loops through the simulation, updating the
     positions of all the provided bodies.
     """
-    timestep = 24*3600  # One day
+    timestep = 24*3600*2  # One day
 
     for body in bodies:
         body.penup()
@@ -135,14 +135,14 @@ def loop(bodies):
             body.px += body.vx * timestep
             body.py += body.vy * timestep
             body.goto(body.px*SCALE, body.py*SCALE)
-            body.dot(3)
+            body.dot(10)
 
 
 def main():
     sun = Body()
     sun.name = 'Sun'
     sun.mass = 1.98892 * 10**30
-    sun.pencolor('yellow')
+    sun.pencolor('black')
 
     earth = Body()
     earth.name = 'Earth'

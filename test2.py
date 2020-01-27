@@ -4,6 +4,7 @@
 import math
 from turtle import *
 
+
 # I got a large amount of info from NASA links in README
 
 # the formula we will be using is from Newtons Law of gravitation
@@ -21,13 +22,13 @@ mars_r = 227.9e+9
 
 # masses
 sun_m = 1.99e+30
-mercury_m = 0.33e+34
+mercury_m = 0.33e+24
 venus_m = 4.87e+24
 earth_m = 5.97e+24
 mars_m = 0.642e+24
 
 # we know their average velocities
-#all in m/s
+# all in m/s
 sun_v = 0
 mercury_v = 47.4e+3
 venus_v = 35e+3
@@ -49,34 +50,29 @@ mass = None
 
 # how do i split up the velocities into x and y????
 
+# I guess because of the bodies moving in a circle the
+# x and y velocities are
 
-def attraction(Body, Sun):
-    if body is Sun:
-        # need to stop objects atracting to themselves
-        raise ValueError("Attraction to itself" % body.name)
-    # all bodies will be taken from the centre of the solar system i.e. the sun.
-    # distance will be from the object to the sun always
-    sx, sy = Body.posx, Body.posy
-    d = math.sqrt(sx**2 + sy**2)
+# lets do it for one planet first
 
-    if d == 0:
-        raise ValueError("Abandon ship")
 
-    f = (G*sun_m*Body.mass)/(d**2)
-
-    theta = math.atan2(sx, sy)
-    fx = f*math.cos(theta)
-    fy = f*math.sin(theta)
-    return fx, fy
-
-    def update_info(step, bodies):
-        """(int, [Body])
-
-        Displays information about the status of the simulation.
-        """
-        print('Step #{}'.format(step))
-        for body in bodies:
-            s = '{:<8}  Pos.={:>6.2f} {:>6.2f} Vel.={:>10.3f} {:>10.3f}'.format(
-                body.name, body.px/AU, body.py/AU, body.vx, body.vy)
-            print(s)
-        print()
+# def attraction(Body, Sun):
+#     if body is Sun:
+#         # need to stop objects atracting to themselves
+#         raise ValueError("Attraction to itself" % body.name)
+#     # all bodies will be taken from the centre of the solar system i.e.
+#       the sun distance will be from the object to the sun always
+#     sx, sy = Body.posx, Body.posy
+#     d = math.sqrt(sx**2 + sy**2)
+#
+#     if d == 0:
+#         raise ValueError("Abandon ship")
+#
+#     f = (G*sun_m*Body.mass)/(d**2)
+#
+#     theta = math.atan2(sx, sy)
+#     fx = f*math.cos(theta)
+#     fy = f*math.sin(theta)
+#     return fx, fy
+#
+# # right i need to
