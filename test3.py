@@ -35,3 +35,6 @@ Body(0.642e+24, "Mars", 24.1e+3, 227.9e+9)
 input()
 for i in Body.solar_sys:
     print(i)
+# Time for fun
+# Use matplotlib
+# Look up planetary motion online
