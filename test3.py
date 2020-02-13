@@ -69,7 +69,7 @@ radius_mercury = 0.387
 radius_venus = 0.723
 radius_earth = 1
 radius_mars = 1.523
-
+#
 fig = plt.figure()
 ax = plt.axes(xlim=(-3, 3), ylim=(-3, 3))
 patch_sun = plt.Circle((.1, -.1), 0.075, fc='y')
@@ -130,14 +130,15 @@ def animate(i):
     return patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars
 
 anim = animation.FuncAnimation(fig, animate, init_func=init, frames=1000, interval=30, blit=True)
-
+ax.set_xlabel("Distance (AU)")
+ax.set_ylabel("Distance (AU)")
 plt.show()
 
 score_mars = 0
 score_venus = 0
 score_mercury = 0
 i = 0
-while i <= 365:
+while i <= 10000:
 
     posx_mercury = radius_mercury * np.cos(theta_mercury * i)
     posy_mercury = radius_mercury * np.sin(theta_mercury * i)
@@ -170,5 +171,5 @@ while i <= 365:
     else:
         score_mercury += 1
 print("Number of days each planet is closest to Earth")
-print("Mars  |   Venus     |  Mercury")
+print("Mars    |    Venus     |  Mercury")
 print(score_mars, "    |   ", score_venus, "     |   ", score_mercury)
