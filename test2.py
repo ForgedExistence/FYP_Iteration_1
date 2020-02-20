@@ -6,9 +6,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import animation
 
-
-
-
 # What I want to do is change the coords using the angular velocity
 # I will make a def and for each time t change the angle of the
 # orbit
@@ -40,6 +37,7 @@ line_v, = ax.plot([], [], lw=1, color='c')
 line_e, = ax.plot([], [], lw=1, color='g')
 line_mar, = ax.plot([], [], lw=1, color='r')
 
+
 def init():
     patch_sun.center = (0, 0)
     ax.add_patch(patch_sun)
@@ -60,11 +58,15 @@ def init():
     patch_mars.center = (0, 0)
     ax.add_patch(patch_mars)
 
-    return patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars, line_mer, line_v, line_e, line_mar,
+    return (patch_sun, patch_mercury, patch_venus, patch_earth,
+            patch_mars, line_mer, line_v, line_e, line_mar)
+
+
 xdata_mer, ydata_mer = [], []
 xdata_v, ydata_v = [], []
 xdata_e, ydata_e = [], []
 xdata_mar, ydata_mar = [], []
+
 
 def animate(i):
 
@@ -79,7 +81,6 @@ def animate(i):
 
     posx_mercury = radius_mercury * np.cos(theta_mercury * i)
     posy_mercury = radius_mercury * np.sin(theta_mercury * i)
-
 
     posx_venus = -radius_venus * np.cos(-theta_venus * i)
     posy_venus = -radius_venus * np.sin(-theta_venus * i)
@@ -102,7 +103,6 @@ def animate(i):
     xdata_mar.append(posx_mars)
     ydata_mar.append(posy_mars)
 
-
     patch_sun.center = (posx_sun, posy_sun)
     patch_mercury.center = (posx_mercury, posy_mercury)
     patch_venus.center = (posx_venus, posy_venus)
@@ -113,10 +113,14 @@ def animate(i):
     line_e.set_data(xdata_e, ydata_e)
     line_mar.set_data(xdata_mar, ydata_mar)
 
+    return(patch_sun, patch_mercury, patch_venus, patch_earth,
+           patch_mars,  line_mer, line_v, line_e, line_mar)
 
-    return patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars,  line_mer, line_v, line_e, line_mar,
 
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=30, blit=True)
+anim = animation.FuncAnimation(fig, animate,
+                               init_func=init,
+                               frames=100000, interval=30,
+                               blit=True)
 ax.set_xlabel("Distance (AU)")
 ax.set_ylabel("Distance (AU)")
 plt.show()

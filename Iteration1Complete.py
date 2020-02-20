@@ -9,6 +9,7 @@ from matplotlib import animation
 # testing my knowledge of python decided to use this to compute the
 # angular velocity
 
+
 class Body:
     solar_sys = []
     s_day = 24*60**2
@@ -83,6 +84,7 @@ line_v, = ax.plot([], [], lw=1, color='c')
 line_e, = ax.plot([], [], lw=1, color='g')
 line_mar, = ax.plot([], [], lw=1, color='r')
 
+
 def init():
     line_mer.set_data([], [])
     line_v.set_data([], [])
@@ -104,11 +106,15 @@ def init():
     patch_mars.center = (0, 0)
     ax.add_patch(patch_mars)
 
-    return patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars, line_mer, line_v, line_e, line_mar,
+    return(patch_sun, patch_mercury, patch_venus, patch_earth,
+           patch_mars, line_mer, line_v, line_e, line_mar)
+
+
 xdata_mer, ydata_mer = [], []
 xdata_v, ydata_v = [], []
 xdata_e, ydata_e = [], []
 xdata_mar, ydata_mar = [], []
+
 
 def animate(i):
 
@@ -155,10 +161,12 @@ def animate(i):
     line_e.set_data(xdata_e, ydata_e)
     line_mar.set_data(xdata_mar, ydata_mar)
 
+    return(patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars,
+           line_mer, line_v, line_e, line_mar)
 
-    return patch_sun, patch_mercury, patch_venus, patch_earth, patch_mars, line_mer, line_v, line_e, line_mar,
 
-anim = animation.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=30, blit=True)
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=100000,
+                               interval=30, blit=True)
 ax.set_xlabel("Distance (AU)")
 ax.set_ylabel("Distance (AU)")
 plt.show()
