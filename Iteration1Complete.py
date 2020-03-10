@@ -9,55 +9,11 @@ from matplotlib import animation
 # testing my knowledge of python decided to use this to compute the
 # angular velocity
 
-
-class Body:
-    solar_sys = []
-    s_day = 24*60**2
-
-    def __init__(self, mass, name, velocity, radius):
-        self.mass = mass
-        self.name = name
-        self.velocity = velocity
-        self.radius = radius
-        self.id = len(Body.solar_sys)
-        self.angular_v = self.velocity/self.radius
-        Body.solar_sys.append(self)
-        self.theta = self.get_theta()
-
-    def __repr__(self):
-        my_rep = f"""
-        Body name: {self.name}
-        Body ID: {self.id}
-        Body mass: {self.mass}
-        Body velocity: {self.velocity}
-        Body radius: {self.radius}
-        Body angular_v: {self.angular_v}
-        Body theta: {self.theta}
-        --------------
-        """
-        return my_rep
-
-    def get_theta(self):
-        theta = (self.velocity*Body.s_day)/self.radius
-        return theta
-
-
-# Sun = Body(1.99e+30, "Sun", 0, 0)
-Body(0.33e+24, "Mercury", 47.4e+3, 57.9e9)
-Body(4.87e+24, "Venus", 35e+3, 108.2e9)
-Body(5.97e+24, "Earth", 29e+3, 149.6e9)
-Body(0.642e+24, "Mars", 24.1e+3, 227.9e9)
-
-input()
-# I
-for i in Body.solar_sys:
-    print(i)
-
 # What I want to do is change the coords using the angular velocity
 # I will make a def and for each time t change the angle of the
 # orbit
-AU = 149.6e9
-time = 24*60**2
+# AU = 149.6e9
+# time = 24*60**2
 #
 theta_mercury = 0.07073160621761658
 theta_venus = 0.027948243992606283
@@ -175,19 +131,19 @@ score_mars = 0
 score_venus = 0
 score_mercury = 0
 i = 0
-while i <= 10000:
+while i <= 100000:
 
     posx_mercury = radius_mercury * np.cos(theta_mercury * i)
     posy_mercury = radius_mercury * np.sin(theta_mercury * i)
 
-    posx_venus = -radius_venus * np.cos(-theta_venus * i)
-    posy_venus = -radius_venus * np.sin(-theta_venus * i)
+    posx_venus = radius_venus * np.cos(theta_venus * i)
+    posy_venus = radius_venus * np.sin(theta_venus * i)
 
     posx_earth = radius_earth * np.cos(theta_earth * i)
     posy_earth = radius_earth * np.sin(theta_earth * i)
 
-    posx_mars = -radius_mars * np.cos(-theta_mars * i)
-    posy_mars = -radius_mars * np.sin(-theta_mars * i)
+    posx_mars = radius_mars * np.cos(theta_mars * i)
+    posy_mars = radius_mars * np.sin(theta_mars * i)
 
     diff_pos1x = posx_mars - posx_earth
     diff_pos1y = posy_mars - posy_earth
@@ -201,7 +157,7 @@ while i <= 10000:
     d3 = np.sqrt(diff_pos3x**2 + diff_pos3y**2)
     i += 1
 
-    if d1 < d2 < d3:
+    if d1 < d2 and d1 < d3:
         score_mars += 1
     elif d2 < d3:
         score_venus += 1
@@ -209,4 +165,4 @@ while i <= 10000:
         score_mercury += 1
 print("Number of days each planet is closest to Earth")
 print("Mars    |    Venus     |  Mercury")
-print(score_mars, "    |   ", score_venus, "     |   ", score_mercury)
+print(score_mars, "    |   ", score_venus, "      |   ", score_mercury)

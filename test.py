@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-# from matplotlib import animation
+from matplotlib import animation
 import numpy as np
 
 fig = plt.figure()
@@ -80,8 +80,19 @@ Body(0.33e+24, "Mercury", 47.4e+3, 57.9e9)
 Body(4.87e+24, "Venus", 35e+3, 108.2e9)
 Body(5.97e+24, "Earth", 29e+3, 149.6e9)
 Body(0.642e+24, "Mars", 24.1e+3, 227.9e9)
-
+Body(1896e+24, "Jupitier", 13.1e+3, 778.6e9)
+Body(568e+24, "Saturn", 9.7e+3, 1433.5e9)
+Body(86.8e+24, "Uranus", 6.8e+3, 2872.5e9)
+Body(102e+24, "Neptune", 5.4e+3, 4495.1e9)
+Body(0.0146e+24, "Pluto", 4.7e+3, 5906.4e9)
 ax.set_xlabel("Distance (AU)")
 ax.set_ylabel("Distance (AU)")
+
+# anim = animation.FuncAnimation(fig, Body.get_animation().animate,
+#                                init_func=Body.get_animation().init,
+#                                frames=100000, interval=30, blit=True)
+# ax.set_xlabel("Distance (AU)")
+# ax.set_ylabel("Distance (AU)")
+# plt.show()
 for i in Body.solar_sys:
     print(i)
